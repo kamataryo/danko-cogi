@@ -140,7 +140,7 @@
 
     input.addEventListener('change', function(e) {
       const query = e.target.value ? `${e.target.value}` : ''
-      const url = `${window.location.href.split('?')[0]}${query}`
+      const url = `${window.location.href.split('?')[0]}${encodeURIComponent(query)}`
       console.log(url)
       widgets.innerHTML =
         `
