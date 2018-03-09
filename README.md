@@ -1,8 +1,15 @@
 # danko-cogi
 
-```
-export COGI_FACEBOOK_APP_ID=123456789
-export COGI_TWITTER_ID=@your_twitter_id
-export COGI_HOME_URL=https://danko-cogi.biwako.io/
-export COGI_PORT=3000
+![cogi](./assets/cogi.svg)
+
+## development
+
+requirement: node > 8
+
+```shell
+$ cp .envrc.sample .envrc
+$ git clone git@github.com:kamataryo/danko-cogi.git
+$ cd danko-cogi
+$ npm install
+$ npm start
 ```

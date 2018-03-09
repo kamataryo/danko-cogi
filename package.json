@@ -1,7 +1,7 @@
 {
   "name": "danko-cogi",
   "version": "1.0.0",
-  "description": "",
+  "description": "A cogi share's your message",
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./index.js",
@@ -11,8 +11,8 @@
     "type": "git",
     "url": "git+https://github.com/kamataryo/danko-cogi.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "kamataryo <mugil.cephalus+github.com@gmail.com>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/kamataryo/danko-cogi/issues"
   },
