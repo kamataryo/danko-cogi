@@ -17,7 +17,7 @@ fastify.register(require('fastify-static'), {
   prefix: '/assets/'
 })
 
-readFile('./templates/protest.html.ejs').then(file => {
+readFile(path.join(__dirname, '/templates/protest.html.ejs')).then(file => {
   const protest = file.toString()
 
   const render = (req, rep) => {
