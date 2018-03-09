@@ -9,7 +9,7 @@ fastify.register(require('fastify-static'), {
   prefix: '/assets/'
 })
 
-const { COGI_FACEBOOK_APP_ID, COGI_TWITTER_ID, COGI_HOME_URL } = process.env
+const { COGI_FACEBOOK_APP_ID, COGI_TWITTER_ID, COGI_HOME_URL, COGI_PORT } = process.env
 
 readFile('./templates/protest.html.ejs').then(file => {
   const protest = file.toString()
@@ -34,7 +34,7 @@ readFile('./templates/protest.html.ejs').then(file => {
       rep.sendFile('cogi.png')
     })
 
-  fastify.listen(3000, '127.0.0.1', err => {
+  fastify.listen(COGI_PORT || 3000, '127.0.0.1', err => {
     if (err) {
       throw err
     } else {
