@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="og:title" content="断固コーギー" />
+  <meta property="og:description" content="<%= content || 'コーギーが抗議します。' %>" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="<%= COGI_HOME_URL %>" />
+  <meta property="og:image" content="./assets/cogi.png" />
+  <meta property="fb:app_id" content="<%= COGI_FACEBOOK_APP_ID %>" />
+  <meta name="twitter:card" content="<%= content %>">
+  <meta name="twitter:site" content="<%= COGI_TWITTER_ID %>">
+
+  <title>断固コーギー</title>
+  <style>
+    html,
+    body {
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    .wrap {
+      box-sizing: border-box;
+      height: 100%;
+      padding: 2em 2em 3em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .title {
+      text-align: center;
+    }
+
+    .link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .link:hover {
+      color: gray;
+      border-bottom: 1px dashed gray;
+    }
+
+    .cogi {
+      width: 100%;
+    }
+
+    .content {
+      position: relative;
+      padding: .5em;
+      margin: .5em;
+      border-radius: .5em;
+      background-color: #79171C;
+      color: #F0F2DE;
+      font-size: 1.5em;
+    }
+
+    .content::before {
+      display: block;
+      position: absolute;
+      content: '';
+      left: 30px;
+      top: -15px;
+      width: 0;
+      height: 0;
+      border-right: 15px solid transparent;
+      border-bottom: 15px solid #79171C;
+      border-left: 15px solid transparent;
+    }
+
+    .widgets {
+      padding: .5em;
+      margin: .5em;
+      text-align: right;
+    }
+
+    .input-content {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background-color: inherit;
+      outline: none;
+      color: inherit;
+      font-size: 1em;
+      resize: none;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <h1 class="title">
+      <% if (content) { %>
+        <a class="link" href="/">
+      <% } %>
+        断固コーギー
+      <% if (content) { %>
+        </a>
+      <% } %>
+    </h1>
+    <h2><img class="cogi" src="./assets/cogi.svg" alt="コーギーの抗議"></h2>
+
+    <% if (content) { %>
+      <p class="content">
+        <%= content %>
+      </p>
+      <p class="widgets">
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false" data-size="large">Tweet</a>
+      </p>
+      <% } else { %>
+        <p class="content">
+          <input id="input-content" class="input-content" placeholder="(抗議の声を入力してね)" value="<%= content %>" />
+        </p>
+        <p id="widgets" class="widgets">
+          <a id="new-sharing-button" href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false" data-size="large" data-url="<%= COGI_HOME_URL %>">Tweet</a>
+        </p>
+        <% } %>
+  </main>
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <script>
+    const input = document.getElementById('input-content')
+    const widgets = document.getElementById('widgets')
+
+    input.addEventListener('change', function(e) {
+      const query = e.target.value ? `?content=${e.target.value}` : ''
+      const url = `${window.location.href.split('?')[0]}${query}`
+      console.log(url)
+      widgets.innerHTML =
+        `
+    <a
+      id="new-sharing-button"
+      href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+      class="twitter-share-button"
+      data-show-count="false"
+      data-size="large"
+      data-url="${url}"
+    >Tweet</a>
+    `
+      twttr.widgets.load(document.getElementById('new-sharing-button'))
+    })
+  </script>
+</body>
+
+</html>
