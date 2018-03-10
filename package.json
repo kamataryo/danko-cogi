@@ -18,9 +18,11 @@
   },
   "homepage": "https://github.com/kamataryo/danko-cogi#readme",
   "dependencies": {
+    "canvas": "^2.0.0-alpha.11",
     "ejs": "^2.5.7",
     "fastify": "^1.1.1",
-    "fastify-static": "^0.8.0"
+    "fastify-static": "^0.8.0",
+    "yakuhanjp": "^3.0.0"
   },
   "devDependencies": {
     "nodemon": "^1.17.1"

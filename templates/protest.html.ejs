@@ -9,7 +9,7 @@
   <meta property="og:description" content="<%= content || 'コーギーが抗議します。' %>" />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="<%= COGI_HOME_URL + content %>" />
-  <meta property="og:image" content="<%= COGI_HOME_URL + 'assets/ogp.png' %>" />
+  <meta property="og:image" content="<%= COGI_HOME_URL + `assets/ogp${content ? '_' + content : ''}.png` %>" />
   <meta property="fb:app_id" content="<%= COGI_FACEBOOK_APP_ID %>" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="<%= COGI_TWITTER_ID %>" />
@@ -134,28 +134,31 @@
         <% } %>
   </main>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-  <script>
-    const input = document.getElementById('input-content')
-    const widgets = document.getElementById('widgets')
 
-    input.addEventListener('change', function(e) {
-      const query = e.target.value ? `${e.target.value}` : ''
-      const url = `${window.location.href.split('?')[0]}${encodeURIComponent(query)}`
-      console.log(url)
-      widgets.innerHTML =
-        `
-    <a
-      id="new-sharing-button"
-      href="https://twitter.com/share?ref_src=twsrc%5Etfw"
-      class="twitter-share-button"
-      data-show-count="false"
-      data-size="large"
-      data-url="${url}"
-    >Tweet</a>
-    `
-      twttr.widgets.load(document.getElementById('new-sharing-button'))
-    })
-  </script>
+  <% if (!content) { %>
+    <script>
+      const input = document.getElementById('input-content')
+      const widgets = document.getElementById('widgets')
+
+      input.addEventListener('change', function(e) {
+        const query = e.target.value ? `${e.target.value}` : ''
+        const url = `${window.location.href.split('?')[0]}${encodeURIComponent(query)}`
+        console.log(url)
+        widgets.innerHTML =
+          `
+      <a
+        id="new-sharing-button"
+        href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+        class="twitter-share-button"
+        data-show-count="false"
+        data-size="large"
+        data-url="${url}"
+      >Tweet</a>
+      `
+        twttr.widgets.load(document.getElementById('new-sharing-button'))
+      })
+    </script>
+    <% } %>
 </body>
 
 </html>
