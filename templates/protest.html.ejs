@@ -9,11 +9,11 @@
   <meta property="og:description" content="<%= content || 'コーギーが抗議します。' %>" />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="<%= COGI_HOME_URL + content %>" />
-  <meta property="og:image" content="<%= COGI_HOME_URL + 'assets/cogi.png' %>" />
+  <meta property="og:image" content="<%= COGI_HOME_URL + 'assets/ogp.png' %>" />
   <meta property="fb:app_id" content="<%= COGI_FACEBOOK_APP_ID %>" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="<%= COGI_TWITTER_ID %>" />
-  <meta name="twitter:image" content="<%= COGI_HOME_URL + 'assets/cogi.png' %>" />
+  <meta name="twitter:image" content="<%= COGI_HOME_URL + 'assets/ogp.png' %>" />
 
   <title>断固コーギー</title>
   <style>
@@ -115,7 +115,7 @@
         </a>
       <% } %>
     </h1>
-    <h2><img class="cogi" src="./assets/cogi.svg" alt="コーギーの抗議"></h2>
+    <h2><img class="cogi" src="./assets/cogi<%= content.length % 2 %>.svg" alt="コーギーの抗議"></h2>
 
     <% if (content) { %>
       <p class="content">

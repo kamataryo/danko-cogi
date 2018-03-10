@@ -9,7 +9,7 @@ const {
   COGI_FACEBOOK_APP_ID,
   COGI_TWITTER_ID,
   COGI_HOME_URL,
-  COGI_PORT,
+  COGI_PORT
 } = process.env
 
 fastify.register(require('fastify-static'), {
@@ -24,7 +24,10 @@ readFile(path.join(__dirname, '/templates/protest.html.ejs')).then(file => {
     const content = url.parse(req.params['*']).pathname.split('/')[1]
 
     if (content.length > 255) {
-      rep.header('Content-Type', 'text/plane').code(400).send('文字長すぎ')
+      rep
+        .header('Content-Type', 'text/plane')
+        .code(400)
+        .send('文字長すぎ')
     }
 
     rep.header('Content-Type', 'text/html').send(
@@ -39,7 +42,7 @@ readFile(path.join(__dirname, '/templates/protest.html.ejs')).then(file => {
 
   fastify
     .get('/cogi.svg', (req, rep) => rep.sendFile('cogi.svg'))
-    .get('/cogi.png', (req, rep) => rep.sendFile('cogi.png'))
+    .get('/ogp.png', (req, rep) => rep.sendFile('ogp.png'))
     .get('*', render)
 
   fastify.listen(COGI_PORT || 3000, '127.0.0.1', err => {
