@@ -10,16 +10,11 @@ const {
   COGI_FACEBOOK_APP_ID,
   COGI_TWITTER_ID,
   COGI_HOME_URL,
-  COGI_PORT
+  COGI_PORT,
+  COGI_FONT_PATH
 } = process.env
 
-registerFont(
-  path.join(
-    __dirname,
-    'node_modules/yakuhanjp/dist/fonts/YakuHanJP/YakuHanJP-Black.woff'
-  ),
-  { family: 'yakuhan' }
-)
+registerFont(COGI_FONT_PATH, { family: 'sourceHanCodeJP' })
 
 fastify.register(require('fastify-static'), {
   root: path.join(__dirname, 'assets'),
@@ -27,8 +22,9 @@ fastify.register(require('fastify-static'), {
 })
 
 const render = protest => (req, rep) => {
-  const content = url.parse(req.params['*']).pathname.split('/')[1]
-
+  const components = decodeURIComponent(req.params['*']).split('/')
+  components.shift() // eliminate '^/'
+  const content = components.join('/')
   if (content.length > 255) {
     rep
       .header('Content-Type', 'text/plane')
@@ -47,7 +43,11 @@ const render = protest => (req, rep) => {
 }
 
 const renderOGP = (req, rep) => {
-  const content = req.params['*'].split('.')[0]
+  const uricomponents = req.params['*'].split('.')
+  if (uricomponents[uricomponents.length - 1] === 'png') {
+    uricomponents.pop() // eliminate '.png'
+  }
+  const content = decodeURIComponent(uricomponents.join('.'))
 
   if (content.length > 255) {
     rep
@@ -60,7 +60,7 @@ const renderOGP = (req, rep) => {
   const ctx = canvas.getContext('2d')
   loadImage(path.join(__dirname, 'assets/ogp.png')).then(image => {
     ctx.drawImage(image, 0, 0, 1200, 630)
-    ctx.font = '48px "yakuhan"'
+    ctx.font = '48px "sourceHanCodeJP"'
     ctx.fillText(content, 60, 90)
     ctx.strokeStyle = 'black'
 
@@ -77,6 +77,7 @@ readFile(path.join(__dirname, 'templates/protest.html.ejs')).then(file => {
   fastify
     .get('/cogi.svg', (req, rep) => rep.sendFile('cogi.svg'))
     .get('/ogp.png', (req, rep) => rep.sendFile('ogp.png'))
+    .get('/favicon.ico', (req, rep) => rep.send('favicon.ico'))
     .get('/assets/ogp_*', renderOGP)
     .get('*', render(protest))
 
