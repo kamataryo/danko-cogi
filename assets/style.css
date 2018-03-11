@@ -7,8 +7,8 @@ body {
 
 body {
   box-sizing: border-box;
-  border-top: 15px solid #79171c;
-  border-bottom: 15px solid #79171c;
+  border-top: 10px solid #79171c;
+  border-bottom: 10px solid #79171c;
   font-family: sans-serif;
 }
 
@@ -84,6 +84,13 @@ body {
   color: inherit;
   font-size: 16px;
   resize: none;
+  line-height: 1.2;
+}
+.input-content:placeholder-shown {
+  color: #aaa;
+}
+.input-content::-webkit-input-placeholder {
+  color: #aaa;
 }
 
 .foot-anchor-wrap {
@@ -101,7 +108,7 @@ body {
   list-style: disc;
   color: gray;
   font-size: 0.75em;
-  margin: 4em 1em 0 2em;
+  margin: 1em 1em 0 2em;
 }
 
 .conduct-item {
