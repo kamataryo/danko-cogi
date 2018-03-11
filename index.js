@@ -34,6 +34,9 @@ const render = template => (req, rep) => {
   const OGP_URL = COGI_HOME_URL + encodeURIComponent(content)
   const OGP_IMAGE_URL = COGI_HOME_URL + `images/${encodeURIComponent(content)}`
   const COGI_IMAGE_PATH = `/assets/cogi${content.length % 2}.svg`
+  const BUG_REPORT_URL = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+    COGI_TWITTER_ID + ' 断固コーギー(' + COGI_HOME_URL + ')のバグレポート: '
+  )}`
 
   rep.header('Content-Type', 'text/html').send(
     ejs.render(template, {
@@ -44,7 +47,8 @@ const render = template => (req, rep) => {
       OGP_DESCRIPTION,
       OGP_URL,
       OGP_IMAGE_URL,
-      COGI_IMAGE_PATH
+      COGI_IMAGE_PATH,
+      BUG_REPORT_URL
     })
   )
 }

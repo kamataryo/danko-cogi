@@ -95,3 +95,14 @@ body {
   color: gray;
   border-bottom: 1px dashed gray;
 }
+
+.conducts {
+  list-style: disc;
+  color: gray;
+  font-size: 0.75em;
+  margin: 4em 1em 0 2em;
+}
+
+.conduct-item {
+  margin-top: 0.5em;
+}
