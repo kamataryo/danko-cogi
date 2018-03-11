@@ -76,7 +76,7 @@ const renderOGP = (req, rep) => {
     ctx.drawImage(image, 0, 0, 1200, 630)
 
     ctx.font = '48px "sourceHanCodeJP"'
-    const max = [1120, 490, 390, 340, 340, 390, 480, 510]
+    const max = [1100, 490, 390, 340, 340, 390, 480, 510]
 
     const lines = [...content]
       .reduce(
