@@ -107,12 +107,6 @@ readFile(path.join(__dirname, 'templates/index.html.ejs')).then(file => {
   const template = file.toString()
 
   fastify
-    .get('/favicon.ico', (req, rep) => rep.send('favicon.ico'))
-    .get('/reset.css', (req, rep) => rep.send('reset.css'))
-    .get('/style.css', (req, rep) => rep.send('style.css'))
-    .get('/script.js', (req, rep) => rep.send('script.js'))
-    .get('/cogi0.svg', (req, rep) => rep.sendFile('cogi0.svg'))
-    .get('/cogi1.svg', (req, rep) => rep.sendFile('cogi1.svg'))
     .get('/images/*', renderOGP)
     .get('/words/*', render(template))
     .get('/', render(template))
