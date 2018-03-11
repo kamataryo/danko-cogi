@@ -29,6 +29,11 @@ body {
   text-align: center;
 }
 
+.version {
+  font-size: 0.75em;
+  margin-left: 0.25em;
+}
+
 .link {
   text-decoration: none;
   color: inherit;

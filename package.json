@@ -1,6 +1,7 @@
 {
   "name": "danko-cogi",
-  "version": "1.0.0",
+  "version": "0.0.1",
+  "isBeta": true,
   "description": "A cogi share's your message",
   "main": "index.js",
   "scripts": {

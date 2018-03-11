@@ -5,6 +5,7 @@ const readFile = promisify(require('fs').readFile)
 const path = require('path')
 const url = require('url')
 const { registerFont, createCanvas, loadImage } = require('canvas')
+const { version: APP_VERSION, isBeta: IS_BETA } = require('./package.json')
 
 const {
   COGI_FACEBOOK_APP_ID,
@@ -41,6 +42,8 @@ const render = template => (req, rep) => {
   rep.header('Content-Type', 'text/html').send(
     ejs.render(template, {
       content,
+      APP_VERSION,
+      IS_BETA,
       COGI_FACEBOOK_APP_ID,
       COGI_TWITTER_ID,
       COGI_HOME_URL,

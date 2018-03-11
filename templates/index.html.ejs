@@ -39,7 +39,7 @@
 
 <body>
   <main class="wrap">
-    <h1 class="title"><a class="link" href="/">断固コーギー</a></h1>
+    <h1 class="title"><a class="link" href="/">断固コーギー</a><sub class="version"><%= `v${APP_VERSION}${IS_BETA ? '(β)' : ''}` %></sub></h1>
     <h2><img class="cogi" src="<%= COGI_IMAGE_PATH %>" alt="コーギーの抗議"></h2>
 
     <% if (content) { %>
