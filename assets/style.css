@@ -52,6 +52,7 @@ body {
   color: #f0f2de;
   font-size: 1.5em;
   word-wrap: break-word;
+  line-height: 1.25em;
 }
 
 .content::before {
