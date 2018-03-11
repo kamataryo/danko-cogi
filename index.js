@@ -116,7 +116,6 @@ readFile(path.join(__dirname, 'templates/index.html.ejs')).then(file => {
     .get('/script.js', (req, rep) => rep.send('script.js'))
     .get('/cogi0.svg', (req, rep) => rep.sendFile('cogi0.svg'))
     .get('/cogi1.svg', (req, rep) => rep.sendFile('cogi1.svg'))
-    .get('/ogp.png', (req, rep) => rep.sendFile('ogp.png'))
     .get('/images/*', renderOGP)
     .get('/words/*', render(template))
     .get('/', render(template))
