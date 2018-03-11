@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="og:title" content="断固コーギー" />
+  <meta property="og:description" content="<%= OGP_DESCRIPTION %>" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="<%= OGP_URL %>" />
+  <meta property="og:image" content="<%= OGP_IMAGE_URL %>" />
+  <meta property="fb:app_id" content="<%= COGI_FACEBOOK_APP_ID %>" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="<%= COGI_TWITTER_ID %>" />
+  <meta name="twitter:image" content="<%= OGP_IMAGE_URL %>" />
+  <link rel="stylesheet" href="/assets/reset.css">
+  <link rel="stylesheet" href="/assets/style.css">
+  <title>断固コーギー</title>
+</head>
+
+<body>
+  <main class="wrap">
+    <h1 class="title"><a class="link" href="/">断固コーギー</a></h1>
+    <h2><img class="cogi" src="<%= COGI_IMAGE_PATH %>" alt="コーギーの抗議"></h2>
+
+    <% if (content) { %>
+      <p class="content">
+        <%= content %>
+      </p>
+      <p class="foot-anchor-wrap">
+        <a class="foot-link" href="/">ホーム</a>
+      </p>
+      <% } else { %>
+        <p class="content">
+          <input id="input-content" class="input-content" placeholder="(抗議の声を入力してね)" value="<%= content %>" />
+        </p>
+        <p class="foot-anchor-wrap">
+          <a id="tweet" class="foot-link" href="/" target="_blank">ツイートする！</a>
+        </p>
+        <% } %>
+  </main>
+
+  <% if (!content) { %>
+    <script async src="/assets/script.js"></script>
+    <% } %>
+</body>
+
+</html>
