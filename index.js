@@ -63,12 +63,13 @@ const renderOGP = (req, rep) => {
   const ctx = canvas.getContext('2d')
 
   loadImage(
-    path.join(__dirname, `assets/cogi${(content.length % 2).toString()}.svg`)
+    path.join(__dirname, `assets/ogp${(content.length % 2).toString()}.png`)
   ).then(image => {
-    ctx.fillStyle = 'rgb(248, 248, 248)'
-    ctx.fillRect(0, 0, 1200, 630)
+    // ctx.fillStyle = 'rgb(248, 248, 248)'
+    // ctx.fillRect(0, 0, 1200, 630)
 
-    ctx.drawImage(image, 450, 120, 700, 700 * 0.707073719)
+    // ctx.drawImage(image, 450, 120, 700, 700 * 0.707073719)
+    ctx.drawImage(image, 0, 0, 1200, 630)
 
     ctx.font = '48px "sourceHanCodeJP"'
     const max = [1120, 490, 390, 340, 340, 390, 480, 510]
@@ -78,7 +79,6 @@ const renderOGP = (req, rep) => {
         (prev, char) => {
           const index = prev.length - 1
           const nextLength = ctx.measureText(prev[index] + char).width
-          console.log(nextLength, max[index])
           if (nextLength > max[index]) {
             prev.push(char)
           } else {
@@ -89,8 +89,6 @@ const renderOGP = (req, rep) => {
         ['']
       )
       .filter((_0, index) => index < max.length)
-
-    console.log(lines)
 
     lines.forEach((line, index) => {
       ctx.fillStyle = 'black'
