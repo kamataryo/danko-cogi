@@ -61,13 +61,12 @@ const renderOGP = (req, rep) => {
 
   const canvas = createCanvas(1200, 630)
   const ctx = canvas.getContext('2d')
-  ctx.beginPath()
 
   loadImage(
-    path.join(__dirname, `assets/cogi${(content.length % 2).toString()}.svg`)
+    path.join(__dirname, `assets/cogi${(content.length % 2).toString()}.png`)
   ).then(image => {
-    ctx.fillStyle = 'rgb(248, 248, 248)'
-    ctx.fillRect(0, 0, 1200, 630)
+    // ctx.fillStyle = 'rgb(248, 248, 248)'
+    // ctx.fillRect(0, 0, 1200, 630)
 
     ctx.drawImage(image, 450, 120, 700, 700 * 0.707073719)
 
