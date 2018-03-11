@@ -63,47 +63,47 @@ const renderOGP = (req, rep) => {
   const ctx = canvas.getContext('2d')
   ctx.beginPath()
 
-  loadImage(path.join(__dirname, `assets/cogi${content.length % 2}.svg`)).then(
-    image => {
-      ctx.fillStyle = 'rgb(248, 248, 248)'
-      ctx.fillRect(0, 0, 1200, 630)
+  loadImage(
+    path.join(__dirname, `assets/cogi${(content.length % 2).toString()}.svg`)
+  ).then(image => {
+    ctx.fillStyle = 'rgb(248, 248, 248)'
+    ctx.fillRect(0, 0, 1200, 630)
 
-      ctx.drawImage(image, 450, 120, 700, 700 * 0.707073719)
+    ctx.drawImage(image, 450, 120, 700, 700 * 0.707073719)
 
-      ctx.font = '48px "sourceHanCodeJP"'
-      const max = [1120, 490, 390, 340, 340, 390, 480, 510]
+    ctx.font = '48px "sourceHanCodeJP"'
+    const max = [1120, 490, 390, 340, 340, 390, 480, 510]
 
-      const lines = [...content]
-        .reduce(
-          (prev, char) => {
-            const index = prev.length - 1
-            const nextLength = ctx.measureText(prev[index] + char).width
-            console.log(nextLength, max[index])
-            if (nextLength > max[index]) {
-              prev.push(char)
-            } else {
-              prev[index] += char
-            }
-            return prev
-          },
-          ['']
-        )
-        .filter((_0, index) => index < max.length)
+    const lines = [...content]
+      .reduce(
+        (prev, char) => {
+          const index = prev.length - 1
+          const nextLength = ctx.measureText(prev[index] + char).width
+          console.log(nextLength, max[index])
+          if (nextLength > max[index]) {
+            prev.push(char)
+          } else {
+            prev[index] += char
+          }
+          return prev
+        },
+        ['']
+      )
+      .filter((_0, index) => index < max.length)
 
-      console.log(lines)
+    console.log(lines)
 
-      lines.forEach((line, index) => {
-        ctx.fillStyle = 'black'
-        ctx.fillText(line, 60, 90 + index * 48 * 1.4)
-      })
+    lines.forEach((line, index) => {
+      ctx.fillStyle = 'black'
+      ctx.fillText(line, 60, 90 + index * 48 * 1.4)
+    })
 
-      const imageBuffer = canvas.toBuffer()
-      rep
-        .header('Content-Type', 'image/png')
-        .header('Content-Length', imageBuffer.length)
-        .send(imageBuffer)
-    }
-  )
+    const imageBuffer = canvas.toBuffer()
+    rep
+      .header('Content-Type', 'image/png')
+      .header('Content-Length', imageBuffer.length)
+      .send(imageBuffer)
+  })
 }
 
 readFile(path.join(__dirname, 'templates/index.html.ejs')).then(file => {
