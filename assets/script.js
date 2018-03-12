@@ -15,6 +15,6 @@ input.addEventListener('change', e => {
 
   tweet.setAttribute(
     'href',
-    `https://twitter.com/intent/tweet?text=${text}&url=${url}`
+    `https://twitter.com/intent/tweet?url=${url}&hashtags=${text}`
   )
 })
