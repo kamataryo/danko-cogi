@@ -103,6 +103,10 @@ body {
   margin: 1em;
 }
 
+.foot-anchor-wrap .foot-link {
+  margin-right: 0.5em;
+}
+
 .foot-link {
   text-decoration: none;
   color: gray;
